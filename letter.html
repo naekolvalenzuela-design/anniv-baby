@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One More Thing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-photo"></div>
+<div class="floaters" id="floaters"></div>
+
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="story.html">Our Story</a>
+  <a href="calls.html">Video Calls</a>
+  <a href="visits.html">Visits</a>
+  <a href="quiz.html">Quiz</a>
+  <a href="game.html">Play</a>
+  <a href="letter.html" class="active">Letter</a>
+</nav>
+
+<main class="letter-wrap">
+  <h2 class="page-heading display">One more thing</h2>
+
+  <div id="lockedView">
+    <div class="surprise-heart" style="margin-bottom: 8px;">🔒</div>
+    <a class="game-btn" href="game.html" style="text-decoration:none; display:inline-block;">Go play the game</a>
+  </div>
+
+  <div id="unlockedView" style="display:none;">
+    <div class="envelope-stage" id="envelopeStage" tabindex="0" role="button" aria-label="Open the letter">
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-paper" id="envelopePaper">
+          <button class="envelope-close" id="envelopeClose" aria-label="Close the letter">&times;</button>
+          <div class="envelope-paper-inner">
+            <p><strong>Happy Anniversary, Yammy ko.</strong></p>
+
+            <p>Who would've thought that simple chat on ogchatbot would already be a year today. I still remember our first convo after exchanging usernames, our first call — I was so nervous, it felt like I was going to throw up the moment you actually answered. After that, I couldn't stop missing your voice. It's so nice to hear, babe. It feels like home.</p>
+
+            <p>You're so easy to love, ang sarap mong balik-balikan. It's crazy how we ended up with this many memories from just one simple conversation. You became the person I look for when I have something to share, the one I miss when we're apart, the one I always want around. Even a simple chat with you is enough to make my whole day lighter.</p>
+
+            <p>I don't always say it, but I really do appreciate you — your time, your effort, the way you make me laugh even over the most random things we talk about. It's crazy to think that out of everyone out there, you're the one I ended up talking to back then, and I'm so happy it's still you now.</p>
+
+            <p>Sana hindi mo ako iwan kasi hindi ko pa kayang ibigay lahat ng gusto at kailangan mo ngayon. Pareho pa lang tayong nag-aaral, marami pa tayong kailangang tapusin. Pero babe, huwag kang mag-alala — darating din yung panahon na makakapagtapos na tayo at kaya na naming buuin yung buhay na gusto natin. Dili pa nako mahatag tanan karon, pero naa koy mga pangandoy para sa atong duha.</p>
+
+            <p>I want the boring days too, someday kapag wala na yung distance sa atin — yung hindi na kailangan pang mag-video call kasi magkasama na talaga. Basta magkasama tayo, okay na ako. Alam kong hindi pa ngayon, pero yun yung gusto kong marating kasabay ng bawat anniversary at ordinary day na darating.</p>
+
+            <p>Alam kong hindi lahat magiging perfect — magkakaroon tayo ng misunderstanding, bad days, pero okay lang basta willing tayong mag-usap at mag-try ulit.</p>
+
+            <p>Thank you for being such a big part of my life, sa lahat ng memories na meron at wala pa. Happy anniversary, babe. #ROADTO4EVER!</p>
+
+            <p><strong>More years. More memories. More ordinary days. More life with you.</strong></p>
+
+            <p><strong>MAHAL NA MAHAL KITA, and I hope I get to spend all of it with you.</strong></p>
+
+            <p style="margin-top:22px;">P.S. — I would also like to thank Surigao Port and Maasin Port, as they made the journey to see you a manageable one. My thanks as well to Jasmine and my friends for their patience with me and for helping make that visit possible. Next time, I will not need to travel in secret simply to see you — we will make the trip together. I love you, my future Registered Nurse. I will always be here, and I will give you everything I am able to.</p>
+
+            <div class="signature">— COI</div>
+          </div>
+        </div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-seal">N</div>
+      </div>
+      <div class="envelope-hint" id="envelopeHint">Tap the envelope to open</div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">made with a lot of overthinking, for September 21</footer>
+
+<script src="floaters.js"></script>
+<script>
+  const envelopeStage = document.getElementById('envelopeStage');
+  const envelope = document.getElementById('envelope');
+  const envelopeHint = document.getElementById('envelopeHint');
+  const envelopeClose = document.getElementById('envelopeClose');
+  const lockedView = document.getElementById('lockedView');
+  const unlockedView = document.getElementById('unlockedView');
+
+  function openEnvelope() {
+    if (envelope.classList.contains('open')) return;
+    envelope.classList.add('open');
+    envelopeStage.classList.add('expanded');
+    envelopeHint.textContent = '';
+  }
+
+  function closeEnvelope() {
+    envelope.classList.remove('open');
+    envelopeStage.classList.remove('expanded');
+    envelopeHint.textContent = 'Tap the envelope to open';
+  }
+
+  envelopeStage.addEventListener('click', (e) => {
+    if (envelope.classList.contains('open')) return; // ignore clicks once open; only the × closes it
+    openEnvelope();
+  });
+  envelopeStage.addEventListener('keydown', (e) => {
+    if (envelope.classList.contains('open')) return;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
+  });
+
+  envelopeClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeEnvelope();
+  });
+
+  // unlock if arriving fresh from a game win (?unlocked=1), or if it was
+  // unlocked earlier this session/device (localStorage flag set by game.js)
+  const arrivedFromWin = new URLSearchParams(window.location.search).get('unlocked') === '1';
+  const previouslyUnlocked = localStorage.getItem('heartsUnlocked') === '1';
+
+  if (arrivedFromWin || previouslyUnlocked) {
+    if (arrivedFromWin) localStorage.setItem('heartsUnlocked', '1');
+    lockedView.style.display = 'none';
+    unlockedView.style.display = 'block';
+  }
+</script>
+</body>
+</html>
